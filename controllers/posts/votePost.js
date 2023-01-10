@@ -9,10 +9,10 @@ const votePost = async (req, res, next) => {
 
     const { value } = req.body;
 
-    // Obtenemos la entrada.
+    // Obtenemos el post.
     const post = await selectPostByIdQuery(idPost);
 
-    // Si somos los dueños de la entrada restringimos el voto.
+    // Si somos los dueños del post restringimos el voto.
     if (post.idUser === req.user.id) {
       throw generateError("No puedes votar tu propio post", 403);
     }
@@ -26,7 +26,7 @@ const votePost = async (req, res, next) => {
     }
     const timestamp = new Date();
 
-    // Votamos la entrada.
+    // Votamos el post.
     await insertVoteQuery(value, req.user.id, idPost, timestamp);
 
     res.send({

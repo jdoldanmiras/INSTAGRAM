@@ -1,36 +1,39 @@
-# Diario de viajes
+# Instagram
 
--   Se trata de una web donde los usuarios publican entradas sobre viajes.
+- Creamos una web donde los usuarios pueden registrarse y postear imagenes.
 
--   Cada entrada tiene título, descripción, lugar y hasta 3 fotos asignadas.
+- Cada post consta de una imagen, con una localizacion y un titulo.
 
--   Cada entrada puede ser votada con una puntuación entre 1 y 5.
+- Las imagenes posteadas pueden ser comentadas y puntuadas de 1 a 5.
 
 ## Base de datos
 
--   **`users:`** id, email`*`, password`*`, username`*`, avatar, role ("admin", "normal"), active, registrationCode, createdAt, modifiedAt.
+- **`user:`** id, username`*`, email`*`, password`*`, avatar, role ("admin", "normal"), registrationCode , recoverPasscode, active createdAt, bio, modifiedAt.
 
--   **`entries:`** id, title`*`, place`*`, description`*`, idUser, createdAt.
+- **`post:`** id, text`*`, image`*` place`*`, idUser, createdAt, updatedAt.
 
--   **`entryPhotos:`** id, name, idEntry, createdAt.
+- **`rate:`** id, value, idPost, idUser, createdAt.
 
--   **`entryVotes:`** id, value`*`, idEntry, idUser, createdAt.
+- **`coments:`** id, idUser, idPost, text`*`,updatedAt, createdAt.
 
 ## Endpoints del usuario
 
--   **POST** - [`/users`] - Crea un usuario pendiente de validar y se envía un correo de verificación. ✅
--   **PUT** - [`/users/validate/:registerCode`] - Valida a un usuario recién registrado. ✅
--   **POST** - [`/users/login`] - Logea a un usuario retornando un token. ✅
--   **GET** - [`/users/:idUser`] - Retorna información de un usuario. ➡️ `Token` ✅
--   **PUT** - [`/users/avatar`] - Permite actualizar el avatar del usuario. ➡️ `Token` ✅
--   **PUT** - [`/users/password/recover`] - Envía al usuario un correo de recuperación de contraseña. ✅
--   **PUT** - [`/users/password`] - Resetea la contraseña de un usuario. ✅
+- **POST** - ["/users"] - Crea un usuario pendiente de validar y se envía un correo de verificación.
+- **PUT** - ["/users/validate/:registrationCode",] - Valida a un usuario recién registrado.
+- **POST** - ["/users/login"] - Logea a un usuario retornando un token.
+- **GET** - ["/users/:idUser"] - Retorna información de un usuario. `Token`
+- **PUT** - ["/users/avatar"] - Permite actualizar el avatar del usuario. `Token`
+- **PUT** - ["/users/password/recover"] - Envía al usuario un correo de recuperación de contraseña.
+- **PUT** - ["/users/password"] - Resetea la contraseña de un usuario.
+- **PUT** - ["/users/email"] - Permite editar el correo de un usuario.
 
-## Endpoints del diario
+## Endpoints del instagram
 
--   **POST** - [`/entries`] - Crea una entrada. ➡️ `Token` ✅
--   **GET** - [`/entries`] - Retorna el listado de entradas. ✅
--   **GET** - [`/entries/:idEntry`] - Retorna una entrada en concreto. ✅
--   **POST** - [`/entries/:idEntry/votes`] - Vota una entrada (entre 1 y 5). ➡️ `Token` ✅
--   **POST** - [`/entries/:idEntry/photos`] - Agregar una foto a una entrada. ➡️ `Token` ✅
--   **DELETE** - [`/entries/:idEntry/photos/:idPhoto`] - Eliminar una foto de una entrada. ➡️ `Token` ✅
+- **POST** - ["/posts"] - Crea un post. `Token`
+- **GET** - ["/posts"] - Devuelve el listado de post.
+- **GET** - ["/post/:idPost"] - Devuelve un post en concreto.
+- **POST** - ["/posts/:idPost/votes"] - (entre 1 y 5). `Token`
+- **GET** - ["/post/:iduser"] - Obtener los posts de un usuario en concreto.
+- **DELETE** - ["/posts/:idPost"] - Eliminar un post. `Token`
+- **POST** - ["/posts/:idPost/coments"] - Agregar un comentario a un post. `Token`
+- **DELETE** - ["/coments/:idComent"] - Eliminar un comentario del post. `Token`

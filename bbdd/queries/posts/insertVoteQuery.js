@@ -8,7 +8,7 @@ const insertVoteQuery = async (value, idUser, idPost, timestamp) => {
   try {
     connection = await getConnection();
 
-    // Comprobamos si ya se ha votado esta entrada.
+    // Comprobamos si el usuario ya ha votado este post.
     const [votes] = await connection.query(
       `SELECT id FROM rate WHERE idUser = ? AND idPost = ?`,
       [idUser, idPost]
@@ -18,7 +18,7 @@ const insertVoteQuery = async (value, idUser, idPost, timestamp) => {
       throw generateError("Ya has votado esta entrada", 403);
     }
 
-    // Insertamos el voto.
+    // Añadimos el voto.
     await connection.query(
       `
                 INSERT INTO rate (value, idPost, idUser, createdAt) 

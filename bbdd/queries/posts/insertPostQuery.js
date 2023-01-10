@@ -6,7 +6,7 @@ const insertPostQuery = async (imageName, place, text, timestamp, idUser) => {
   try {
     connection = await getConnection();
 
-    // Insertamos la entrada y obtenemos los datos de la misma.
+    // Insertamos el post y obtenemos los datos del mismo.
     const [newPost] = await connection.query(
       `
                 INSERT INTO post (text, image, place, idUser, updatedAt, createdAt)
@@ -15,9 +15,7 @@ const insertPostQuery = async (imageName, place, text, timestamp, idUser) => {
       [text, imageName, place, idUser, timestamp, timestamp]
     );
 
-    //console.log(newPost);
-
-    // Retornamos el id que le ha asignado la base de datos a esta nueva entrada.
+    // Retornamos el id que le ha asignado la base de datos al nuevo post.
     return newPost.insertId;
   } finally {
     if (connection) connection.release();

@@ -45,7 +45,7 @@ const main = async () => {
                 place VARCHAR(30) NOT NULL, 
                 idUser INT UNSIGNED NOT NULL,
                 FOREIGN KEY (idUser) REFERENCES user(id),
-                updatedAt TIMESTAMP NOT NULL,
+                updatedAt TIMESTAMP,
                 createdAt TIMESTAMP NOT NULL
             )
         `);
@@ -70,7 +70,7 @@ const main = async () => {
                 FOREIGN KEY (idUser) REFERENCES user(id),
                 idPost INT UNSIGNED NOT NULL,
                 FOREIGN KEY (idPost) REFERENCES post(id),
-                text VARCHAR(50),
+                text VARCHAR(50) NOT NULL,
                 updatedAt TIMESTAMP,
                 createdAt TIMESTAMP NOT NULL
             )

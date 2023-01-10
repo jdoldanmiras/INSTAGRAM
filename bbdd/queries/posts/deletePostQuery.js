@@ -23,6 +23,10 @@ const deletePostQuery = async (idUser, idPost) => {
     // Eliminamos la foto del disco.
     await deletePhoto(post[0].image);
 
+    // Borramos todos los comentarios relacionados con el post que queremos
+    // eliminar.
+    await connection.query(`DELETE FROM coments WHERE idPost = ?`, [idPost]);
+
     // Borramos todos los rate relacionados con el post que queremos
     // eliminar.
     await connection.query(`DELETE FROM rate WHERE idPost = ?`, [idPost]);

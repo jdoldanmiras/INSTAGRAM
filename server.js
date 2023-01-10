@@ -11,7 +11,7 @@ const { PORT, UPLOADS_DIR } = process.env;
 const app = express();
 
 // Middleware que permite conectar el backend con el frontend (evita problemas
-// con as CORS).
+// con las CORS).
 app.use(cors());
 
 // Middleware que indica cuál es el directorio de ficheros estáticos.
@@ -39,7 +39,7 @@ const postExists = require("./middlewares/postExists");
 
 /**
  * ############################
- * ## Controladores usuarios ##
+ * ## Controladores usuario ##
  * ############################
  */
 
@@ -90,6 +90,8 @@ const {
   votePost,
   getUserPosts,
   deletePost,
+  comentPost,
+  deleteComent,
 } = require("./controllers/posts");
 
 // Crear un nuevo post.
@@ -98,17 +100,23 @@ app.post("/posts", isAuth, newPost);
 // Listar posts.
 app.get("/posts", listPosts);
 
-// Obtener una entrada concreta.
+// Obtener un post concreto.
 app.get("/post/:idPost", getPost);
 
-// Votar una entrada.
+// Votar una post.
 app.post("/posts/:idPost/votes", isAuth, votePost);
 
 // Obtener los posts de un usuario concreto.
 app.get("/posts/:idUser", getUserPosts);
 
-// Eliminar un tweet.
+// Eliminar un post.
 app.delete("/posts/:idPost", isAuth, postExists, deletePost);
+
+// comentar un post.
+app.post("/posts/:idPost/coments", isAuth, postExists, comentPost);
+
+// Eliminar un comentario.
+app.delete("/coments/:idComent", isAuth, deleteComent);
 
 /**
  * ##################################

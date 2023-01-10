@@ -4,6 +4,8 @@ const getPost = require("./getPost");
 const votePost = require("./votePost");
 const getUserPosts = require("./getUserPosts");
 const deletePost = require("./deletePost");
+const comentPost = require("./comentPost");
+const deleteComent = require("./deleteComent");
 
 module.exports = {
   newPost,
@@ -12,4 +14,6 @@ module.exports = {
   votePost,
   getUserPosts,
   deletePost,
+  comentPost,
+  deleteComent,
 };

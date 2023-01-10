@@ -20,7 +20,7 @@ const editEmail = async (req, res, next) => {
 
     const username = user.username;
 
-    // Comprobamos si las contraseñas coinciden. El método compare retorna
+    // Comprobamos si las contraseñas coinciden. El método "compare" retorna
     // true o false en función de si las contraseñas coinciden o no.
     const validPassword = await bcrypt.compare(password, user.password);
 

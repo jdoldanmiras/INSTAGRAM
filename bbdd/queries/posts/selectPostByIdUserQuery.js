@@ -18,14 +18,9 @@ const selectPostByIdUserQuery = async (idUser) => {
             `,
       [idUser]
     );
-    //ESTO TENDRIA QUE SER UN LOOP, PARA VER UN COMENTARIO TIENES QUE ENTRAR EN EL POST
-    //const [coments] = await connection.query(
-    //`SELECT id, text FROM coments WHERE idPost = ?`,
-    // [idUser]
-    //);
 
     if (posts.length < 1) {
-      throw generateError("No se ha encontrado ninguna entrada", 404);
+      throw generateError("No se ha encontrado ningun post", 404);
     }
 
     return posts;
@@ -35,14 +30,3 @@ const selectPostByIdUserQuery = async (idUser) => {
 };
 
 module.exports = selectPostByIdUserQuery;
-/*
-const [posts] = await connection.query(
-  `
-            SELECT P.id, P.text, P.image, P.place, P.idUser, P.createdAt
-            FROM user U
-            LEFT JOIN post P ON U.id = P.idUser
-            WHERE P.id = ?
-            GROUP BY P.idUser
-        `,
-  [idUser]
-);*/

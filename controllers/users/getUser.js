@@ -9,10 +9,10 @@ const getUser = async (req, res, next) => {
     // Obtener información de un usuario.
     const user = await selectUserByIdQuery(idUser);
 
-    // Si el usuario no está activo fingimos que no ha sido encontrado.
+    // Si el usuario no está activo, le decimos que debe activar su cuenta para acceder.
     if (!user.active) {
       throw generateError(
-        "Necesitas activar tu cuenta para poder acceder",
+        "Necesita activar su cuenta para poder acceder, revise su correo",
         401
       );
     }
