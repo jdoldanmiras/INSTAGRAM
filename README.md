@@ -6,6 +6,18 @@
 
 - Las imagenes posteadas pueden ser comentadas y puntuadas de 1 a 5.
 
+## Instalar
+
+- Crear una base de datos vacía en una instancia de MySQL local.
+
+- Guardar el archivo `.env.example` como `.env` y cubrir los datos necesarios.
+
+- Ejecutar `npm run initDB` para crear las tablas necesarias en la base de datos anteriormente creada.
+
+- Ejecutar `npm run dev` o `npm start` para lanzar el servidor.
+
+- Exporta de la carpeta proporcionada "Doc" el archivo Postman al programa Postman para poder testear los distintos endpoints.
+
 ## Base de datos
 
 - **`user:`** id, username`*`, email`*`, password`*`, avatar, role ("admin", "normal"), registrationCode , recoverPasscode, active createdAt, bio, modifiedAt.
@@ -30,7 +42,7 @@
 ## Endpoints del instagram
 
 - **POST** - ["/posts"] - Crea un post. `Token`
-- **GET** - ["/posts"] - Devuelve el listado de post.
+- **GET** - ["/posts"] - Devuelve el listado de post, permite filtrar por keyword.
 - **GET** - ["/post/:idPost"] - Devuelve un post en concreto.
 - **POST** - ["/posts/:idPost/votes"] - (entre 1 y 5). `Token`
 - **GET** - ["/post/:iduser"] - Obtener los posts de un usuario en concreto.
